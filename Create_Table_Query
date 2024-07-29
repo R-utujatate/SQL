@@ -1,0 +1,21 @@
+create table Users(UserId int auto_increment primary key,      
+                    Username varchar(100) NOT NULL UNIQUE,                                      
+                    Email varchar(200) NOT NULL UNIQUE,                                         
+                    Password varchar(200) NOT NULL,
+                    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+
+create table Posts(PostId int AUTO_INCREMENT PRIMARY KEY,                                      
+                    UserId int,                                                                 
+                    Title varchar(255) NOT NULL,                                                
+                    Content TEXT NOT NULL,                                                      
+                    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                              
+                    FOREIGN KEY (UserId) references Users(UserId) on delete cascade);
+
+ create table Comments(CommentId int auto_increment primary key,                                   
+                        PostId int,UserId int,
+                        Content TEXT NOT NULL,
+                        CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                              
+                        foreign key (PostId) references Posts(PostId) on delete cascade, 
+                        foreign key (UserId) references Users(UserId) on delete ca
+                        scade);
